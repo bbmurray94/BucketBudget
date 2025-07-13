@@ -9,12 +9,14 @@ import java.util.List;
 @RestController
 public class BucketBudgetController {
 
+    private final BucketBudgetService bucketBudgetService;
+
+    public BucketBudgetController(BucketBudgetService service){
+        this.bucketBudgetService = service;
+    }
+
     @GetMapping("/buckets")
     public List<Bucket> Get(){
-        List<Bucket> list = new ArrayList<>();
-        list.add(new Bucket(1, "Rent", 10.00));
-        list.add(new Bucket(2, "Health Insurance", 40.00));
-
-        return list;
+        return bucketBudgetService.getAllBuckets();
     }
 }

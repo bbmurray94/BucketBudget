@@ -1,16 +1,21 @@
 package com.bucket_budget.core;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Buckets")
 public class Bucket {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    private double currentAmount;
 
     public Bucket(){}
 
-    public Bucket(int id, String name, double currentAmount){
+    public Bucket(int id, String name){
         this.id = id;
         this.name = name;
-        this.currentAmount = currentAmount;
     }
 
     // Getters and Setters
@@ -20,6 +25,4 @@ public class Bucket {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public double getCurrentAmount() { return currentAmount; }
-    public void setCurrentAmount(double currentAmount) { this.currentAmount = currentAmount; }
 }
