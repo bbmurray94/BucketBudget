@@ -1,4 +1,4 @@
-package com.bucket_budget.core;
+package com.bucket_budget.core.entity;
 
 import jakarta.persistence.*;
 
@@ -14,6 +14,8 @@ public class Transaction {
     private Integer subBucketId;
     private double amount;
     private String description;
+
+    public Transaction(){}
 
     public Transaction(Integer id, Date date, Integer subBucketId, double amount, String description){
         this.id = id;
