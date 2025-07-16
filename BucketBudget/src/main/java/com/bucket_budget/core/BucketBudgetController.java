@@ -4,9 +4,7 @@ import com.bucket_budget.core.entity.Bucket;
 import com.bucket_budget.core.entity.BucketSummary;
 import com.bucket_budget.core.entity.SubBucket;
 import com.bucket_budget.core.entity.Transaction;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,11 @@ public class BucketBudgetController {
     @GetMapping("/buckets/{id}")
     public Bucket getBucket(@PathVariable Integer id){
         return bucketBudgetService.getBucket(id);
+    }
+
+    @PostMapping("/buckets")
+    public Bucket addBucket(@RequestBody Bucket bucket){
+        return bucketBudgetService.addBucket(bucket);
     }
 
     // SubBuckets
@@ -56,5 +59,10 @@ public class BucketBudgetController {
     @GetMapping("/transactions/{id}")
     public Transaction getTransaction(@PathVariable Integer id){
         return bucketBudgetService.getTransaction(id);
+    }
+
+    @PostMapping("/transactions")
+    public Transaction addTransaction(@RequestBody Transaction transaction){
+        return bucketBudgetService.addTransaction(transaction);
     }
 }
