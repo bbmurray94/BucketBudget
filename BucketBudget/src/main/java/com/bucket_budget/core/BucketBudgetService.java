@@ -42,6 +42,10 @@ public class BucketBudgetService {
         return result.orElse(null);
     }
 
+    public Bucket addBucket(Bucket newBucket){
+        return bucketRepository.save(newBucket);
+    }
+
     // SubBuckets
     public List<SubBucket> getAllSubBuckets(){
         return ImmutableList.copyOf((subBucketRepository.findAll()));
@@ -65,5 +69,9 @@ public class BucketBudgetService {
     public Transaction getTransaction(Integer id){
         Optional<Transaction> result = transactionRepository.findById(id);
         return result.orElse(null);
+    }
+
+    public Transaction addTransaction(Transaction newTransaction){
+        return transactionRepository.save(newTransaction);
     }
 }
