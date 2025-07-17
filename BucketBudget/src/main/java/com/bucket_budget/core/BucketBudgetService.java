@@ -47,13 +47,12 @@ public class BucketBudgetService {
     }
 
     // SubBuckets
-    public List<SubBucket> getAllSubBuckets(){
-        return ImmutableList.copyOf((subBucketRepository.findAll()));
+    public List<SubBucket> getAllSubBucketsByBucketId(Integer bucketId){
+        return ImmutableList.copyOf(subBucketRepository.findAllByBucketId(bucketId));
     }
 
-    public SubBucket getSubBucket(Integer id){
-        Optional<SubBucket> result = subBucketRepository.findById(id);
-        return result.orElse(null);
+    public SubBucket getSubBucketByBucketId(Integer bucketId, Integer id){
+        return subBucketRepository.findByBucketId(bucketId, id);
     }
 
     // Bucket Summary

@@ -34,14 +34,14 @@ public class BucketBudgetController {
     }
 
     // SubBuckets
-    @GetMapping("/subbuckets")
-    public List<SubBucket> getAllSubBuckets(){
-        return bucketBudgetService.getAllSubBuckets();
+    @GetMapping("/buckets/{bucketId}/subbuckets")
+    public List<SubBucket> getAllSubBuckets(@PathVariable Integer bucketId){
+        return bucketBudgetService.getAllSubBucketsByBucketId(bucketId);
     }
 
-    @GetMapping("/subbuckets/{id}")
-    public SubBucket getSubBucket(@PathVariable Integer id){
-        return bucketBudgetService.getSubBucket(id);
+    @GetMapping("/buckets/{bucketId}/subbuckets/{id}")
+    public SubBucket getSubBucket(@PathVariable Integer bucketId, @PathVariable Integer id){
+        return bucketBudgetService.getSubBucketByBucketId(bucketId, id);
     }
 
     // Bucket Summary
