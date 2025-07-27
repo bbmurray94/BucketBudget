@@ -1,0 +1,7 @@
+<div>
+    <ul>
+        @for (transaction of transactions.slice().reverse(); track transaction){
+            <li>{{transaction.date.toLocaleDateString()}} | {{transaction.subBucketId}} | {{transaction.amount}} | {{transaction.description}}</li>
+        }
+    </ul>
+</div>
