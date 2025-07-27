@@ -1,0 +1,12 @@
+<div>
+    @for (bucket of buckets; track bucket){
+        <h3>{{bucket.name}}</h3>
+        <ul>
+            @for (subBucket of bucket.subBuckets; track subBucket){
+                <li>{{subBucket.name}}
+                    - ${{subBucket.amount}}
+                </li>
+            }
+        </ul>
+    }
+</div>
