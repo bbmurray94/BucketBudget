@@ -34,10 +34,17 @@ create table IF Not Exists Transactions(
 );
 
 CREATE OR REPLACE View BudgetSummary AS
-select s.id, s.name, IFNULL(SUM(t.amount), 0) as amountAvailable
-from SubBuckets as s
-LEFT Join Transactions t on s.id = t.subBucketId
-Group by s.id;
+    SELECT 
+        s.id AS subBucketId,
+        s.bucketId AS bucketId,
+        b.name AS bucketName,
+        s.name AS subBucketName,
+        IFNULL(SUM(t.amount), 0) AS amountAvailable
+    FROM
+        ((SubBuckets s
+        LEFT JOIN Transactions t ON ((s.id = t.subBucketId)))
+        LEFT JOIN Buckets b ON ((b.id = s.bucketId)))
+    GROUP BY s.id;
 
 delimiter //
 CREATE PROCEDURE Transfer(
