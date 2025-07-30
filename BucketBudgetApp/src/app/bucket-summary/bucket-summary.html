@@ -2,9 +2,9 @@
     @for (bucket of buckets; track bucket){
         <h3>{{bucket.name}}</h3>
         <ul>
-            @for (subBucket of bucket.subBuckets; track subBucket){
+            @for (subBucket of bucket.subBucketList; track subBucket){
                 <li>{{subBucket.name}}
-                    - ${{subBucket.amount}}
+                    - ${{subBucket.amountAvailable}}
                 </li>
             }
         </ul>

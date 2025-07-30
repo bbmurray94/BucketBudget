@@ -1,11 +1,11 @@
 export interface Bucket {
     id: number;
     name: string;
-    subBuckets: SubBucket[];
+    subBucketList: SubBucket[];
 }
 
 export interface SubBucket {
     id: number;
     name: string;
-    amount: number;
+    amountAvailable: number;
 }

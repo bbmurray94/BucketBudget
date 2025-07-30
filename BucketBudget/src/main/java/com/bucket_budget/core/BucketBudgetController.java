@@ -45,8 +45,9 @@ public class BucketBudgetController {
     }
 
     // Bucket Summary
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/bucket-summary")
-    public List<BucketSummary> getBucketSummary(){
+    public List<Bucket> getBucketSummary(){
         return bucketBudgetService.getBucketSummary();
     }
 

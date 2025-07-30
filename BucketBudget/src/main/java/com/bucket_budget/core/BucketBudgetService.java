@@ -22,15 +22,19 @@ public class BucketBudgetService {
     private final TransactionRepository transactionRepository;
     private final BucketSummaryRepository bucketSummaryRepository;
 
+    private final BucketSummaryConverter bucketSummaryConverter;
+
     public BucketBudgetService(BucketRepository bucketRepository,
                                SubBucketRepository subBucketRepository,
                                TransactionRepository transactionRepository,
-                               BucketSummaryRepository bucketSummaryRepository) {
+                               BucketSummaryRepository bucketSummaryRepository,
+                               BucketSummaryConverter bucketSummaryConverter) {
         this.bucketRepository = bucketRepository;
         this.subBucketRepository = subBucketRepository;
         this.transactionRepository = transactionRepository;
         this.bucketSummaryRepository = bucketSummaryRepository;
 
+        this.bucketSummaryConverter = bucketSummaryConverter;
     }
 
     // Buckets
@@ -56,8 +60,9 @@ public class BucketBudgetService {
     }
 
     // Bucket Summary
-    public List<BucketSummary> getBucketSummary(){
-        return ImmutableList.copyOf(bucketSummaryRepository.findAll());
+    public List<Bucket> getBucketSummary(){
+        List<BucketSummary> list = ImmutableList.copyOf(bucketSummaryRepository.findAll());
+        return bucketSummaryConverter.convertToBucketList(list);
     }
 
     // Transactions

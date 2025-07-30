@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { BucketService } from '../bucket-service';
 import { Bucket } from '../bucket';
 
 @Component({
@@ -8,24 +9,12 @@ import { Bucket } from '../bucket';
   styleUrl: './bucket-summary.css'
 })
 export class BucketSummary {
-  // buckets: Bucket[] = [];
-  buckets: Bucket[] = [
-    {
-      id: 1,
-      name: 'Bills',
-      subBuckets: [
-        { id: 101, name: 'Rent', amount: 30 },
-        { id: 102, name: 'Utilities', amount: 20 }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Loans',
-      subBuckets: [
-        { id: 201, name: 'Student', amount: 50 },
-        { id: 202, name: 'WellsFargo', amount: 25 }
-      ]
-    }
-  ];
 
+  buckets: Bucket[] = [];
+  
+  constructor(private bucketService: BucketService){}
+
+  ngOnInit() {
+    this.bucketService.getBucketSummary().subscribe(b => this.buckets = b);
+  }
 }

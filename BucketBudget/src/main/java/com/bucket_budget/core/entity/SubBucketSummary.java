@@ -1,19 +1,14 @@
 package com.bucket_budget.core.entity;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "SubBuckets")
-public class SubBucket implements ISubBucket{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SubBucketSummary implements ISubBucket{
     private Integer id;
     private Integer bucketId;
     private String name;
+    private double amountAvailable;
 
-    public SubBucket(){}
+    public SubBucketSummary(){}
 
-    public SubBucket(Integer id, Integer bucketId, String name){
+    public SubBucketSummary(Integer id, Integer bucketId, String name){
         this.id = id;
         this.bucketId = bucketId;
         this.name = name;
@@ -28,4 +23,6 @@ public class SubBucket implements ISubBucket{
     public Integer getBucketId() { return this.bucketId; }
     public void setBucketId(Integer bucketId) { this.bucketId = bucketId; }
 
+    public double getAmountAvailable() { return this.amountAvailable; }
+    public void setAmountAvailable(double amountAvailable) { this.amountAvailable = amountAvailable; }
 }
